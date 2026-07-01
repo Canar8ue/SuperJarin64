@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -36,7 +36,7 @@ jobs:
           make VERSION=us COMPARE=0 -j$(nproc)
 
       - name: Upload Compiled ROM Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: sm64-us-rom
           path: build/us/sm64.us.z64
