@@ -22,7 +22,6 @@ struct SaveFile {
     // cap can always be found in a fixed spot within the course
     u8 capLevel;
     u8 capArea;
-    Vec3s capPos;
 
     u32 flags;
 
