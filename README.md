@@ -80,18 +80,19 @@ To maintain codebase cleaniness and ensure build stability, please follow these 
 
 The repository is pre-configured to build your ROM automatically using GitHub Actions.
 
-### 1. Encode your US ROM to Base64
-On your Windows machine, open **PowerShell** and run the following command to output a base64 text file containing your ROM:
-```powershell
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("path/to/baserom.us.z64")) | Out-File -FilePath baserom_base64.txt
-```
+### 1. Upload your US ROM to a File Host
+Since the ROM is 8 MB and GitHub secrets are limited to 64 KB, you must upload your `baserom.us.z64` to a file host to get a direct download URL.
+* **Option A (Catbox):** Go to [catbox.moe](https://catbox.moe/), upload your `baserom.us.z64` file, and copy the resulting short link (e.g. `https://files.catbox.moe/xxxxxx.z64`).
+* **Option B (Dropbox):** Upload your `baserom.us.z64` to Dropbox, copy the share link, and change the end of the URL from `?dl=0` to `?dl=1` to make it a direct download link.
 
-### 2. Add the Secret to GitHub
+### 2. Add the URL Secret to GitHub
 1. Go to your GitHub repository: `https://github.com/Canar8ue/SuperJarin64`
 2. Go to **Settings > Secrets and variables > Actions**
-3. Create a **New repository secret** named `BASEROM_US_BASE64`
-4. Paste the entire content of `baserom_base64.txt` into the secret's value field.
+3. Click **New repository secret**.
+4. Configure the secret:
+   * **Name:** `BASEROM_URL`
+   * **Value:** Paste your direct download link.
 
-### 3. Push and Download
+### 3. Trigger Build and Download
 * Every time you push changes to GitHub, the **Build SuperJarin64** workflow will automatically run.
-* Once the run completes (approx. 2-4 minutes), go to the **Actions** tab on your repository, click the latest build run, and download the compiled `sm64-us-rom` zip file under the **Artifacts** section!
+* Once the run completes, go to the **Actions** tab on your repository, click the latest build run, and download the compiled `sm64-us-rom` zip file under the **Artifacts** section!
