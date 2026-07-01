@@ -5,7 +5,7 @@ const GeoLayout hazy_castle_geo_area_1[] = {
         GEO_OPEN_NODE(),
             GEO_NODE_ORTHO(100),
             GEO_OPEN_NODE(),
-                GEO_BACKGROUND(BACKGROUND_SPOOKY, geo_skybox_main),
+                GEO_BACKGROUND(BACKGROUND_HAUNTED, geo_skybox_main),
             GEO_CLOSE_NODE(),
         GEO_CLOSE_NODE(),
         GEO_ZBUFFER(1),

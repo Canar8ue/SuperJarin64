@@ -88,7 +88,7 @@ static const LevelScript script_func_local_4[] = {
 const LevelScript level_hazy_castle_entry[] = {
     INIT_LEVEL(),
     LOAD_MIO0        (/*seg*/ 0x07, _hazy_castle_segment_7SegmentRomStart, _hazy_castle_segment_7SegmentRomEnd),
-    LOAD_MIO0        (/*seg*/ 0x0A, _spooky_skybox_mio0SegmentRomStart, _spooky_skybox_mio0SegmentRomEnd),
+    LOAD_MIO0        (/*seg*/ 0x0A, _bbh_skybox_mio0SegmentRomStart, _bbh_skybox_mio0SegmentRomEnd),
     LOAD_MIO0_TEXTURE(/*seg*/ 0x09, _generic_mio0SegmentRomStart, _generic_mio0SegmentRomEnd),
     LOAD_MIO0        (/*seg*/ 0x05, _group10_mio0SegmentRomStart, _group10_mio0SegmentRomEnd),
     LOAD_RAW         (/*seg*/ 0x0C, _group10_geoSegmentRomStart,  _group10_geoSegmentRomEnd),
