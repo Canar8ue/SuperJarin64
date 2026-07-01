@@ -1,6 +1,9 @@
 # SuperJarin64 - Progress Track
 
 ## 📝 Simple Changelog
+* **v1.3.1 (Warp Position Adjusted & Hitbox Increased):**
+  * Adjusted middle window warp position (`Z=-2680`, `Y=850`) and increased detection radius to `200` (`BPARAM1(20)`) to account for solid wall collision.
+  * Renamed `progress.me` to `progress.md`.
 * **v1.3.0 (Warp Linked & Cleanup):**
   * Linked the Peach Room's middle window to the custom Tower of the Wing Cap sky course using exact player-verified coordinates (`X=1874`, `Y=768`, `Z=-2014`).
   * Removed the temporary debug coordinate display overlay.
@@ -108,3 +111,21 @@ Since the ROM is 8 MB and GitHub secrets are limited to 64 KB, you must upload y
 ### 3. Trigger Build and Download
 * Every time you push changes to GitHub, the **Build SuperJarin64** workflow will automatically run.
 * Once the run completes, go to the **Actions** tab on your repository, click the latest build run, and download the compiled `sm64-us-rom` zip file under the **Artifacts** section!
+
+---
+
+## 🛠️ Problem Log & Resolutions
+
+This section documents key issues encountered during development and how they were solved:
+
+### 1. Large Baserom Secret Size Limit Failure
+* **Problem:** Storing the baseline ROM (`baserom.us.z64`) base64 string directly in GitHub Secrets crashed or failed because GitHub Secrets have a hard maximum limit of **64 KB** (the ROM is 8 MB).
+* **Resolution:** Switched to storing a direct download link (`BASEROM_URL`) in the secrets pointing to a file sharing host (e.g. Catbox), and used `curl` in `.github/workflows/build.yml` to download it dynamically at compile time.
+
+### 2. Warp Pipe Model ID Conflict
+* **Problem:** Using `MODEL_WARP_PIPE` in the custom level `totwc` caused an undeclared compile error because warp pipes belong to the `common1` asset group, while `totwc` only loads the `common0` asset group.
+* **Resolution:** Replaced the warp pipe teleporter with a physical cloud platform bridge featuring a horizontally moving checkerboard elevator. This keeps the asset footprint within `common0` and resolves the build conflict.
+
+### 3. Solid Mezzanine Wall Blocking Warp Trigger
+* **Problem:** Jumping at the middle window did not teleport the player. The wall behind the middle window is physically solid in the castle's 3D collision mesh, blocking Mario at `Z = -2724`, preventing him from touching the warp trigger placed at `Z = -2014` (which had a tiny default radius of `50` units).
+* **Resolution:** Moved the warp trigger forward to `Z = -2680`, raised its height to `Y = 850`, and increased its detection radius to `200` units (`BPARAM1(20)`). This ensures that jumping against the middle window successfully triggers the warp without clipping through the wall.
