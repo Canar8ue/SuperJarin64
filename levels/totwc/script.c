@@ -52,11 +52,17 @@ static const LevelScript script_func_local_1[] = {
     OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -2800, 1800, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
     OBJECT(/*model*/ MODEL_HEART,                 /*pos*/     0, 1300, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRecoveryHeart),
 
-    // === Southwest Tower Warp Pipe ===
-    OBJECT(/*model*/ MODEL_WARP_PIPE, /*pos*/ -4096, 2048, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0B), /*bhv*/ bhvWarpPipe),
-
-    // === Northwest Tower Warp Pipe ===
-    OBJECT(/*model*/ MODEL_WARP_PIPE, /*pos*/ -4096, 2048, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0C), /*bhv*/ bhvWarpPipe),
+    // === Southwest to Northwest Bridge Clouds ===
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4096, 2048,  2700, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4096, 2048,  1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ -4096, 2150,  1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+    
+    // Moving Checkerboard Platform in the middle gap
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ -4096, 2048, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(50), /*bhv*/ bhvCheckerboardPlatform),
+    
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4096, 2048, -1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ -4096, 2150, -1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4096, 2048, -2700, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
 
     // === Northwest to Northeast Bridge Clouds (Climbing 2048 to 3994) ===
     OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -2800, 2400, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
@@ -114,10 +120,6 @@ const LevelScript level_totwc_entry[] = {
         WARP_NODE(/*id*/ WARP_NODE_SUCCESS,    /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 1, /*destNode*/ WARP_NODE_26, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_DEATH,      /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 1, /*destNode*/ WARP_NODE_23, /*flags*/ WARP_NO_CHECKPOINT),
         
-        // Pipe Warps
-        WARP_NODE(/*id*/ WARP_NODE_0B,         /*destLevel*/ LEVEL_TOTWC,  /*destArea*/ 1, /*destNode*/ WARP_NODE_0C, /*flags*/ WARP_NO_CHECKPOINT),
-        WARP_NODE(/*id*/ WARP_NODE_0C,         /*destLevel*/ LEVEL_TOTWC,  /*destArea*/ 1, /*destNode*/ WARP_NODE_0B, /*flags*/ WARP_NO_CHECKPOINT),
-
         JUMP_LINK(script_func_local_2),
         JUMP_LINK(script_func_local_1),
         TERRAIN(/*terrainData*/ totwc_seg7_collision),
