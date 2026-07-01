@@ -2000,6 +2000,29 @@ void render_dialog_entries(void) {
     gDialogY = 0;
 #endif
 
+    {
+        static s8 sStartPressCount = 0;
+        static s16 sStartPressTimer = 0;
+
+        if (sStartPressTimer > 0) {
+            sStartPressTimer--;
+        } else {
+            sStartPressCount = 0;
+        }
+
+        if (gPlayer3Controller->buttonPressed & START_BUTTON) {
+            sStartPressCount++;
+            sStartPressTimer = 30;
+        }
+
+        if (sStartPressCount >= 3) {
+            sStartPressCount = 0;
+            sStartPressTimer = 0;
+            handle_special_dialog_text(gDialogID);
+            gMenuState = MENU_STATE_DIALOG_CLOSING;
+        }
+    }
+
     switch (gMenuState) {
         case MENU_STATE_DIALOG_OPENING:
             if (gDialogBoxAngle == DIALOG_BOX_ANGLE_DEFAULT) {

@@ -272,6 +272,10 @@ void save_file_erase(s32 fileIndex) {
     touch_high_score_ages(fileIndex);
     bzero(&gSaveBuffer.files[fileIndex][0], sizeof(gSaveBuffer.files[fileIndex][0]));
 
+    // Start with 1 star pre-collected (BOB Star 1) so the first star door is open immediately
+    gSaveBuffer.files[fileIndex][0].flags = SAVE_FLAG_FILE_EXISTS;
+    gSaveBuffer.files[fileIndex][0].courseStars[COURSE_NUM_TO_INDEX(COURSE_BOB)] = (1 << 0);
+
     gSaveFileModified = TRUE;
     save_file_do_save(fileIndex);
 }

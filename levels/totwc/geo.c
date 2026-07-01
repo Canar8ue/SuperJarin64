@@ -15,3 +15,4 @@
 
 #include "levels/totwc/cloud/geo.inc.c"
 #include "levels/totwc/areas/1/geo.inc.c"
+#include "levels/totwc/areas/2/geo.inc.c"

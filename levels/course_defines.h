@@ -26,13 +26,13 @@ DEFINE_COURSE(COURSE_TTM,  0x00000040)            // (12) Tall, Tall Mountain
 DEFINE_COURSE(COURSE_THI,  0x11112140)            // (13) Tiny Huge Island
 DEFINE_COURSE(COURSE_TTC,  0x22222240)            // (14) Tick Tock Clock
 DEFINE_COURSE(COURSE_RR,   0x00000040)            // (15) Rainbow Ride
+DEFINE_COURSE(COURSE_TOTWC,0x22222240)            // (16) Bowser's Forest
 DEFINE_COURSES_END()
-DEFINE_BONUS_COURSE(COURSE_BITDW,    0x34444440) // (16) Bowser in the Dark World
-DEFINE_BONUS_COURSE(COURSE_BITFS,    0x34444440) // (17) Bowser in the Fire Sea
-DEFINE_BONUS_COURSE(COURSE_BITS,     0x34444440) // (18) Bowser in the Sky
-DEFINE_BONUS_COURSE(COURSE_PSS,      0x24444440) // (19) The Princess's Secret Slide
-DEFINE_BONUS_COURSE(COURSE_COTMC,    0x44444440) // (20) Cavern of the Metal Cap
-DEFINE_BONUS_COURSE(COURSE_TOTWC,    0x04444440) // (21) Tower of the Wing Cap
+DEFINE_BONUS_COURSE(COURSE_BITDW,    0x34444440) // (17) Bowser in the Dark World
+DEFINE_BONUS_COURSE(COURSE_BITFS,    0x34444440) // (18) Bowser in the Fire Sea
+DEFINE_BONUS_COURSE(COURSE_BITS,     0x34444440) // (19) Bowser in the Sky
+DEFINE_BONUS_COURSE(COURSE_PSS,      0x24444440) // (20) The Princess's Secret Slide
+DEFINE_BONUS_COURSE(COURSE_COTMC,    0x44444440) // (21) Cavern of the Metal Cap
 DEFINE_BONUS_COURSE(COURSE_VCUTM,    0x24444440) // (22) Vanish Cap under the Moat
 DEFINE_BONUS_COURSE(COURSE_WMOTR,    0x04444440) // (23) Wing Mario over the Rainbow
 DEFINE_BONUS_COURSE(COURSE_SA,       0x24444440) // (24) Secret Aquarium

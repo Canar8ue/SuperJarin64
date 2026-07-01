@@ -589,6 +589,28 @@ s32 act_debug_free_move(struct MarioState *m) {
 
 void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
     s32 dialogID;
+    static s8 sStarDanceStartCount = 0;
+    static s16 sStarDanceStartTimer = 0;
+
+    if (sStarDanceStartTimer > 0) {
+        sStarDanceStartTimer--;
+    } else {
+        sStarDanceStartCount = 0;
+    }
+
+    if (m->controller->buttonPressed & START_BUTTON) {
+        sStarDanceStartCount++;
+        sStarDanceStartTimer = 30;
+    }
+
+    if (sStarDanceStartCount >= 3) {
+        sStarDanceStartCount = 0;
+        sStarDanceStartTimer = 0;
+        if (m->actionState == 0 && m->actionTimer > 1) {
+            m->actionTimer = 79;
+        }
+    }
+
     if (m->actionState == 0) {
         switch (++m->actionTimer) {
             case 1:

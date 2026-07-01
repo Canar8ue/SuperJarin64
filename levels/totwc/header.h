@@ -6,14 +6,19 @@
 // geo
 extern const GeoLayout totwc_geo_000160[];
 extern const GeoLayout totwc_geo_000188[];
+extern const GeoLayout totwc_geo_area_2[];
 
 // leveldata
 extern const Gfx totwc_seg7_dl_07005D28[];
 extern const Gfx totwc_seg7_dl_07007048[];
 extern const Gfx totwc_seg7_dl_070078B8[];
 extern const Gfx totwc_seg7_dl_070079A8[];
+extern const Gfx totwc_seg7_dl_area_2[];
 extern const Collision totwc_seg7_collision[];
 extern const MacroObject totwc_seg7_macro_objs[];
+
+extern const Collision totwc_seg7_collision_area_2[];
+extern const MacroObject totwc_seg7_macro_objs_area_2[];
 
 // script
 extern const LevelScript level_totwc_entry[];

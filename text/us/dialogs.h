@@ -1543,36 +1543,21 @@ Cap, you can walk\n\
 underwater! Try it!"))
 
 DEFINE_DIALOG(DIALOG_131, 1, 5, 30, 200, _("\
-Welcome to the Wing Cap\n\
-Course! Step on the red\n\
-switch at the top of the\n\
-tower, in the center of\n\
-the rainbow ring.\n\
-When you trigger the\n\
-switch, all of the red\n\
-blocks you find will\n\
-become solid.\n\
+Welcome to Bowser's Forest!\n\
+Explore the open air of the\n\
+forest exterior, talk to NPCs,\n\
+and find the entrance to the\n\
+underground dungeon ruins.\n\
 \n\
-Try out the Wing Cap! Do\n\
-the Triple Jump to take\n\
-off and press [Z] to land.\n\
-\n\
-\n\
-Pull back on the Control\n\
-Stick to go up and push\n\
-forward to nose down,\n\
-just as you would when\n\
-flying an airplane."))
+Can you collect all 6 stars?"))
 
-DEFINE_DIALOG(DIALOG_132, 1, 4, 30, 200, _("\
-Whoa, Mario, pal, you\n\
-aren't trying to cheat,\n\
-are you? Shortcuts aren't\n\
-allowed.\n\
-Now, I know that you\n\
-know better. You're\n\
-disqualified! Next time,\n\
-play fair!"))
+DEFINE_DIALOG(DIALOG_132, 1, 6, 30, 200, _("\
+Hello Mario!\n\
+Welcome to this forgotten forest.\n\
+Bowser has hidden multiple stars\n\
+here. Climb the tall stone towers\n\
+or search below the cliffs to\n\
+start your search!"))
 
 DEFINE_DIALOG(DIALOG_133, 1, 6, 30, 200, _("\
 Am I glad to see you! The\n\
@@ -1702,12 +1687,11 @@ It disappears\n\
 automatically, too."))
 
 DEFINE_DIALOG(DIALOG_140, 1, 6, 30, 200, _("\
-Elevator Area\n\
-Right: Hazy Maze\n\
-/// Entrance\n\
-Left: Black Hole\n\
-///Elevator 1\n\
-Arrow: You are here"))
+Hey! Look up at the high sky\n\
+ring! There are red coins floating\n\
+among the clouds and garden platforms.\n\
+Grab the Wing Cap from the box\n\
+at spawn to take flight!"))
 
 DEFINE_DIALOG(DIALOG_141, 1, 5, 150, 200, _("\
 You've recovered one of\n\
@@ -1789,27 +1773,12 @@ thanks to you--and is\n\
 Bowser ever upset! Now,\n\
 on to the final bout!"))
 
-DEFINE_DIALOG(DIALOG_147, 1, 5, 30, 200, _("\
-Are you using the Cap\n\
-Blocks? You really should,\n\
-you know.\n\
-\n\
-\n\
-To make them solid so you\n\
-can break them, you have\n\
-to press the colored Cap\n\
-Switches in the castle's\n\
-hidden courses.\n\
-You'll find the hidden\n\
-courses only after\n\
-regaining some of the\n\
-Power Stars.\n\
-\n\
-The Cap Blocks are a big\n\
-help! Red for the Wing\n\
-Cap, green for the Metal\n\
-Cap, blue for the Vanish\n\
-Cap."))
+DEFINE_DIALOG(DIALOG_147, 1, 6, 30, 200, _("\
+Stop right there! Beyond this\n\
+gate lies the ancient dungeon ruins.\n\
+It is filled with dangerous traps\n\
+like flamethrowers and shifting\n\
+platforms. Be very careful!"))
 
 DEFINE_DIALOG(DIALOG_148, 1, 6, 30, 200, _("\
 Snowman Mountain ahead.\n\
