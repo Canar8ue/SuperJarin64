@@ -21,15 +21,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential pkgconf git binutils-mips-linux-gnu python3 zlib1g-dev libaudiofile-dev
 
-      - name: Decode Baseline ROM
+      - name: Download Baseline ROM
         env:
-          BASEROM_US_BASE64: ${{ secrets.BASEROM_US_BASE64 }}
+          BASEROM_URL: ${{ secrets.BASEROM_URL }}
         run: |
-          if [ -z "$BASEROM_US_BASE64" ]; then
-            echo "::error::GitHub Secret 'BASEROM_US_BASE64' is missing! Please encode your baserom.us.z64 and add it as a repository secret."
+          if [ -z "$BASEROM_URL" ]; then
+            echo "::error::GitHub Secret 'BASEROM_URL' is missing! Please upload your baserom.us.z64 to a file sharing host and add its download URL as a secret."
             exit 1
           fi
-          echo "$BASEROM_US_BASE64" | base64 -d > baserom.us.z64
+          curl -L -o baserom.us.z64 "$BASEROM_URL"
 
       - name: Compile ROM
         run: |
