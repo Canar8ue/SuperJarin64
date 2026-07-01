@@ -48,9 +48,12 @@ const LevelScript level_castle_courtyard_entry[] = {
 
     AREA(/*index*/ 1, castle_courtyard_geo_000218),
         OBJECT(/*model*/ MODEL_BOO,  /*pos*/ -2360, -100, -2712, /*angle*/ 0,   0, 0, /*bhvParam*/ BPARAM1(1) | BPARAM2(WARP_NODE_05), /*bhv*/ bhvBooWithCage),
+        OBJECT(/*model*/ MODEL_COURTYARD_SPIKY_TREE, /*pos*/ 2360, -100, -2712, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject), // Spooky Hazy Castle tree
+        OBJECT(/*model*/ MODEL_NONE, /*pos*/ 2360, -100, -2712, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(10) | BPARAM2(WARP_NODE_0C), /*bhv*/ bhvWarp),
         OBJECT(/*model*/ MODEL_NONE, /*pos*/     0,   51, -1000, /*angle*/ 0, 180, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0A), /*bhv*/ bhvLaunchStarCollectWarp),
         OBJECT(/*model*/ MODEL_NONE, /*pos*/     0,   51, -1000, /*angle*/ 0, 180, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0B), /*bhv*/ bhvLaunchDeathWarp),
         WARP_NODE(/*id*/ WARP_NODE_05,    /*destLevel*/ LEVEL_BBH,              /*destArea*/ 1, /*destNode*/ WARP_NODE_0A, /*flags*/ WARP_NO_CHECKPOINT),
+        WARP_NODE(/*id*/ WARP_NODE_0C,    /*destLevel*/ LEVEL_UNKNOWN_32,       /*destArea*/ 1, /*destNode*/ WARP_NODE_0A, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_0A,    /*destLevel*/ LEVEL_CASTLE_COURTYARD, /*destArea*/ 1, /*destNode*/ WARP_NODE_0A, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_0B,    /*destLevel*/ LEVEL_CASTLE_COURTYARD, /*destArea*/ 1, /*destNode*/ WARP_NODE_0B, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_01,    /*destLevel*/ LEVEL_CASTLE,           /*destArea*/ 1, /*destNode*/ WARP_NODE_02, /*flags*/ WARP_NO_CHECKPOINT),

@@ -1780,58 +1780,32 @@ It is filled with dangerous traps\n\
 like flamethrowers and shifting\n\
 platforms. Be very careful!"))
 
-DEFINE_DIALOG(DIALOG_148, 1, 6, 30, 200, _("\
-Snowman Mountain ahead.\n\
-Keep out! And don't try\n\
-the Triple Jump over the\n\
-ice block shooter.\n\
-\n\
-\n\
-If you fall into the\n\
-freezing pond, your power\n\
-decreases quickly, and\n\
-you won't recover\n\
-automatically.\n\
-//--The Snowman"))
+DEFINE_DIALOG(DIALOG_148, 1, 5, 30, 200, _("\
+Welcome to Hazy Castle!\n\
+This ancient place is cursed and\n\
+filled with spirits. Follow the\n\
+stone paths to reach the castle\n\
+ruins, but beware of the deep fog!"))
 
-DEFINE_DIALOG(DIALOG_149, 1, 3, 30, 200, _("\
-Welcome to\n\
-Princess Toadstool's\n\
-secret slide!\n\
-There's a Star hidden\n\
-here that Bowser couldn't\n\
-find.\n\
-When you slide, press\n\
-forward to speed up,\n\
-pull back to slow down.\n\
-If you slide really\n\
-fast, you'll win the Star!"))
+DEFINE_DIALOG(DIALOG_149, 1, 5, 30, 200, _("\
+Boo-hoo-hoo!\n\
+I am a friendly ghost, not like the\n\
+others. I hid a special Star near\n\
+where you arrived in the forest. You\n\
+must search the spawn clearing to find it!"))
 
-DEFINE_DIALOG(DIALOG_150, 1, 5, 30, 200, _("\
-Waaaa! You've flooded my\n\
-house! Wh-why?? Look at\n\
-this mess! What am I\n\
-going to do now?\n\
-\n\
-The ceiling's ruined, the\n\
-floor is soaked...what to\n\
-do, what to do? Huff...\n\
-huff...it makes me so...\n\
-MAD!!!\n\
-Everything's been going\n\
-wrong ever since I got\n\
-this Star...It's so shiny,\n\
-but it makes me feel...\n\
-strange..."))
+DEFINE_DIALOG(DIALOG_150, 1, 4, 30, 200, _("\
+Hello! I came inside to escape the\n\
+fog, but there is a giant ghost\n\
+floating upstairs in the library!\n\
+Defeat it to make the mansion safe!"))
 
-DEFINE_DIALOG(DIALOG_151, 1, 4, 30, 200, _("\
-I can't take this\n\
-anymore! First you get\n\
-me all wet, then you\n\
-stomp on me!\n\
-Now I'm really, really,\n\
-REALLY mad!\n\
-Waaaaaaaaaaaaaaaaa!!!"))
+DEFINE_DIALOG(DIALOG_151, 1, 5, 30, 200, _("\
+Wow, you made it to the rooftops!\n\
+The final star of this course is\n\
+hidden here. Find the 5 secrets\n\
+hidden in the corners and pillars\n\
+to make the star appear!"))
 
 DEFINE_DIALOG(DIALOG_152, 1, 3, 30, 200, _("\
 Owwch! Uncle! Uncle!\n\

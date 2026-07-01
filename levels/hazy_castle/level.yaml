@@ -1,0 +1,13 @@
+# Hazy Castle (Course 17)
+short-name: hazy_castle
+full-name: Hazy Castle
+texture-file: ["/texture.inc.c"]
+area-count: 3
+objects: []
+shared-path: []
+# loaded files
+skybox-bin: spooky
+texture-bin: spooky
+effects: false
+actor-bins: [group10, group16]
+common-bin: [common0]
