@@ -28,7 +28,7 @@ static const LevelScript script_func_local_1[] = {
 
     // === Central Tower & Cap Switch ===
     OBJECT(/*model*/ MODEL_CAP_SWITCH, /*pos*/ 0, -2047, 10, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvCapSwitch),
-    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 0, -2047, 200, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(20), /*bhv*/ bhvCheckerboardPlatform),
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 0, -2047, 200, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(20), /*bhv*/ bhvCheckerboardElevatorGroup),
     OBJECT(/*model*/ MODEL_GOOMBA, /*pos*/ -200, -1842, 200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
     OBJECT(/*model*/ MODEL_GOOMBA, /*pos*/  200, -1842, -200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
 
@@ -41,7 +41,7 @@ static const LevelScript script_func_local_1[] = {
     OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ 3200,   200, 3200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
 
     // === Southeast Tower Lower & Upper Deck ===
-    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 4096, 1024, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(100), /*bhv*/ bhvCheckerboardPlatform),
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 4096, 1024, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(100), /*bhv*/ bhvCheckerboardElevatorGroup),
     OBJECT(/*model*/ MODEL_EXCLAMATION_BOX,       /*pos*/ 4096, 2150, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(3), /*bhv*/ bhvExclamationBox), // Koopa Shell Box
 
     // === Shell Surf Wave Clouds (Connecting 4096 to -4096) ===
@@ -58,7 +58,7 @@ static const LevelScript script_func_local_1[] = {
     OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ -4096, 2150,  1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
     
     // Moving Checkerboard Platform in the middle gap
-    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ -4096, 2048, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(50), /*bhv*/ bhvCheckerboardPlatform),
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ -4096, 2048, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(50), /*bhv*/ bhvCheckerboardElevatorGroup),
     
     OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4096, 2048, -1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
     OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ -4096, 2150, -1400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
