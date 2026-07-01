@@ -1061,23 +1061,16 @@ void radial_camera_move(struct Camera *c) {
         if (avoidStatus == 3) {
             approach_s16_asymptotic_bool(&sModeOffsetYaw, avoidYaw, 10);
         } else {
-            if (c->mode == CAMERA_MODE_RADIAL) {
+            // Only auto-align when NOT holding C-buttons!
+            if (c->mode == CAMERA_MODE_RADIAL && !(gPlayer1Controller->buttonDown & (L_CBUTTONS | R_CBUTTONS))) {
                 // sModeOffsetYaw only updates when Mario is moving
                 rotateSpeed = gMarioStates[0].forwardVel / 32.f * 128.f;
                 camera_approach_s16_symmetric_bool(&sModeOffsetYaw, yawOffset, rotateSpeed);
             }
-            if (c->mode == CAMERA_MODE_OUTWARD_RADIAL) {
+            if (c->mode == CAMERA_MODE_OUTWARD_RADIAL && !(gPlayer1Controller->buttonDown & (L_CBUTTONS | R_CBUTTONS))) {
                 sModeOffsetYaw = offset_yaw_outward_radial(c, atan2s(areaDistZ, areaDistX));
             }
         }
-    }
-
-    // Bound sModeOffsetYaw within (-120, 120) degrees
-    if (sModeOffsetYaw > 0x5554) {
-        sModeOffsetYaw = 0x5554;
-    }
-    if (sModeOffsetYaw < -0x5554) {
-        sModeOffsetYaw = -0x5554;
     }
 }
 
@@ -2136,8 +2129,22 @@ s16 update_default_camera(struct Camera *c) {
         }
     }
 
-    // Determine how fast to rotate the camera
-    if (sCSideButtonYaw == 0) {
+    // Continuous smooth camera rotation when holding C-buttons
+    if ((gPlayer1Controller->buttonDown & L_CBUTTONS) || (gPlayer1Controller->buttonDown & R_CBUTTONS)) {
+        if (gPlayer1Controller->buttonDown & L_CBUTTONS) {
+            yaw += 0x250;
+            if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
+                play_sound_cbutton_side();
+            }
+        }
+        if (gPlayer1Controller->buttonDown & R_CBUTTONS) {
+            yaw -= 0x250;
+            if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
+                play_sound_cbutton_side();
+            }
+        }
+        nextYawVel = 0;
+    } else {
         if (c->mode == CAMERA_MODE_FREE_ROAM) {
             nextYawVel = 0xC0;
         } else {
@@ -2146,15 +2153,12 @@ s16 update_default_camera(struct Camera *c) {
         if ((gPlayer1Controller->stickX != 0.f || gPlayer1Controller->stickY != 0.f) != 0) {
             nextYawVel = 0x20;
         }
-    } else {
-        if (sCSideButtonYaw < 0) {
-            yaw += 0x200;
-        }
-        if (sCSideButtonYaw > 0) {
-            yaw -= 0x200;
-        }
-        camera_approach_s16_symmetric_bool(&sCSideButtonYaw, 0, 0x100);
-        nextYawVel = 0;
+    }
+
+    // Center camera behind Mario on pressing L button
+    if (gPlayer1Controller->buttonPressed & L_TRIG) {
+        yaw = yawGoal;
+        play_sound_cbutton_up();
     }
     sYawSpeed = 0x400;
     xzDist = calc_hor_dist(sMarioCamState->pos, c->pos);
@@ -4862,75 +4866,21 @@ s32 radial_camera_input(struct Camera *c, UNUSED f32 unused) {
 #endif
 
     if ((gCameraMovementFlags & CAM_MOVE_ENTERED_ROTATE_SURFACE) || !(gCameraMovementFlags & CAM_MOVE_ROTATE)) {
-
-        // If C-L or C-R are pressed, the camera is rotating
-        if (gPlayer1Controller->buttonPressed & (L_CBUTTONS | R_CBUTTONS)) {
-            gCameraMovementFlags &= ~CAM_MOVE_ENTERED_ROTATE_SURFACE;
-            //  @bug this does not clear the rotation flags set by the surface. It's possible to set
-            //       both ROTATE_LEFT and ROTATE_RIGHT, locking the camera.
-            //       Ex: If a surface set CAM_MOVE_ROTATE_RIGHT and the user presses C-R, it locks the
-            //       camera until a different mode is activated
-        }
-
-        // Rotate Right and left
-        if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
-            if (sModeOffsetYaw > -0x800) {
-                // The camera is now rotating right
-                if (!(gCameraMovementFlags & CAM_MOVE_ROTATE_RIGHT)) {
-                    gCameraMovementFlags |= CAM_MOVE_ROTATE_RIGHT;
-                }
-
-                if (c->mode == CAMERA_MODE_RADIAL) {
-                    // if > ~48 degrees, we're rotating for the second time.
-                    if (sModeOffsetYaw > 0x22AA) {
-                        s2ndRotateFlags |= CAM_MOVE_ROTATE_RIGHT;
-                    }
-
-                    if (sModeOffsetYaw == DEGREES(105)) {
-                        play_sound_button_change_blocked();
-                    } else {
-                        play_sound_cbutton_side();
-                    }
-                } else {
-                    if (sModeOffsetYaw == DEGREES(60)) {
-                        play_sound_button_change_blocked();
-                    } else {
-                        play_sound_cbutton_side();
-                    }
-                }
-            } else {
-                gCameraMovementFlags |= CAM_MOVE_RETURN_TO_MIDDLE;
-                play_sound_cbutton_up();
+        if (gPlayer1Controller->buttonDown & L_CBUTTONS) {
+            sModeOffsetYaw += 0x250;
+            if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
+                play_sound_cbutton_side();
             }
         }
-        if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
-            if (sModeOffsetYaw < 0x800) {
-                if (!(gCameraMovementFlags & CAM_MOVE_ROTATE_LEFT)) {
-                    gCameraMovementFlags |= CAM_MOVE_ROTATE_LEFT;
-                }
-
-                if (c->mode == CAMERA_MODE_RADIAL) {
-                    // if < ~48 degrees, we're rotating for the second time.
-                    if (sModeOffsetYaw < -0x22AA) {
-                        s2ndRotateFlags |= CAM_MOVE_ROTATE_LEFT;
-                    }
-
-                    if (sModeOffsetYaw == DEGREES(-105)) {
-                        play_sound_button_change_blocked();
-                    } else {
-                        play_sound_cbutton_side();
-                    }
-                } else {
-                    if (sModeOffsetYaw == DEGREES(-60)) {
-                        play_sound_button_change_blocked();
-                    } else {
-                        play_sound_cbutton_side();
-                    }
-                }
-            } else {
-                gCameraMovementFlags |= CAM_MOVE_RETURN_TO_MIDDLE;
-                play_sound_cbutton_up();
+        if (gPlayer1Controller->buttonDown & R_CBUTTONS) {
+            sModeOffsetYaw -= 0x250;
+            if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
+                play_sound_cbutton_side();
             }
+        }
+        if (gPlayer1Controller->buttonPressed & L_TRIG) {
+            sModeOffsetYaw = 0;
+            play_sound_cbutton_up();
         }
     }
 
@@ -5012,7 +4962,8 @@ void handle_c_button_movement(struct Camera *c) {
             }
         }
 
-        // Rotate left or right
+        // Rotate left or right is now handled continuously in update_default_camera
+        /*
         cSideYaw = 0x1000;
         if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
             if (gCameraMovementFlags & CAM_MOVE_ROTATE_LEFT) {
@@ -5036,6 +4987,7 @@ void handle_c_button_movement(struct Camera *c) {
                 sCSideButtonYaw = cSideYaw;
             }
         }
+        */
     }
 }
 

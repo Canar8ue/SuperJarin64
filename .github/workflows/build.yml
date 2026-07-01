@@ -1,0 +1,42 @@
+name: Build SuperJarin64
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkgconf git binutils-mips-linux-gnu python3 zlib1g-dev libaudiofile-dev
+
+      - name: Decode Baseline ROM
+        env:
+          BASEROM_US_BASE64: ${{ secrets.BASEROM_US_BASE64 }}
+        run: |
+          if [ -z "$BASEROM_US_BASE64" ]; then
+            echo "::error::GitHub Secret 'BASEROM_US_BASE64' is missing! Please encode your baserom.us.z64 and add it as a repository secret."
+            exit 1
+          fi
+          echo "$BASEROM_US_BASE64" | base64 -d > baserom.us.z64
+
+      - name: Compile ROM
+        run: |
+          make VERSION=us COMPARE=0 -j$(nproc)
+
+      - name: Upload Compiled ROM Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sm64-us-rom
+          path: build/us/sm64.us.z64
