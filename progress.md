@@ -1,21 +1,31 @@
 # SuperJarin64 - Progress Track
 
 ## 📝 Simple Changelog
+* **v1.5.0 (Hazy Castle - Course 17 Added):**
+  - Implemented a brand-new course "Hazy Castle" (Course 17) using the `LEVEL_UNKNOWN_32` stub slot.
+  - Placed a spiky tree entrance warp on the right side of the Castle Courtyard (symmetrical to BBH).
+  - Designed 3 areas: Spooky Forest (Area 1), Castle Interior (Area 2), and Rooftops (Area 3).
+  - Placed 6 custom stars and 4 dialog NPCs (friendly Boo, library Toad, concerned Bob-omb Buddies).
+* **v1.4.0 (Bowser's Forest & QoL Features):**
+  - Overhauled TOTWC into a full 6-star main course named "Bowser's Forest" (Course 16) with a sky/forest exterior (Area 1) and a dungeon sub-level (Area 2).
+  - Added starting with 1 star (BOB Star 1 pre-collected) on save file initialization/erasure.
+  - Added triple-Start button press to instantly skip dialogs and star dance cutscenes.
+  - Added showing all 6 stars (including uncollected transparent ones) and descriptions in the act selector.
 * **v1.3.1 (Warp Position Adjusted & Hitbox Increased):**
-  * Adjusted middle window warp position (`Z=-2680`, `Y=850`) and increased detection radius to `200` (`BPARAM1(20)`) to account for solid wall collision.
-  * Renamed `progress.me` to `progress.md`.
+  - Adjusted middle window warp position (`Z=-2680`, `Y=850`) and increased detection radius to `200` (`BPARAM1(20)`) to account for solid wall collision.
+  - Renamed `progress.me` to `progress.md`.
 * **v1.3.0 (Warp Linked & Cleanup):**
-  * Linked the Peach Room's middle window to the custom Tower of the Wing Cap sky course using exact player-verified coordinates (`X=1874`, `Y=768`, `Z=-2014`).
-  * Removed the temporary debug coordinate display overlay.
+  - Linked the Peach Room's middle window to the custom Tower of the Wing Cap sky course using exact player-verified coordinates (`X=1874`, `Y=768`, `Z=-2014`).
+  - Removed the temporary debug coordinate display overlay.
 * **v1.2.0 (Custom Level & Build Fixes):**
-  * Implemented a massive custom sky obstacle course in the Tower of the Wing Cap (`levels/totwc/`).
-  * Replaced warp pipes with a horizontal moving bridge to resolve build conflicts.
+  - Implemented a massive custom sky obstacle course in the Tower of the Wing Cap (`levels/totwc/`).
+  - Replaced warp pipes with a horizontal moving bridge to resolve build conflicts.
 * **v1.1.0 (Debug Overlay & Window Prep):**
-  * Added a temporary on-screen X, Y, Z coordinate HUD overlay for window warp alignment.
+  - Added a temporary on-screen X, Y, Z coordinate HUD overlay for window warp alignment.
 * **v1.0.0 (Modern Free Camera & CI):**
-  * Added 360-degree free camera horizontal rotation with auto-alignment bypass while rotating.
-  * Added L-button camera re-centering.
-  * Setup automated GitHub Actions ROM compilation pipeline.
+  - Added 360-degree free camera horizontal rotation with auto-alignment bypass while rotating.
+  - Added L-button camera re-centering.
+  - Setup automated GitHub Actions ROM compilation pipeline.
 
 ---
 
@@ -28,6 +38,11 @@ The goal of this project is to create a modern, more playable version of Super M
 * **Auto-Alignment Bypassed During Input:** Bypassed the auto-centering only while holding C-buttons, allowing you to choose and hold any angle. Once you release the buttons, the camera slowly centers behind Mario when running, just like the original game.
 * **No Angle Restrictions:** Removed the 120-degree limit on camera angles, enabling full 360-degree orbital rotation around Mario.
 * **L-Button Re-centering:** Press the **L Button** to instantly snap the camera directly behind Mario.
+* **Bowser's Forest (Course 16):** Full 6-star course featuring custom forest layouts, Bob-omb Buddy guide NPCs, and a sub-level dungeon area.
+* **Hazy Castle (Course 17):** Brand-new spooky-themed course entered via Castle Courtyard spiky tree warp, with 3 areas, custom Toad/Boo/Buddy dialogs, and 6 stars.
+* **1 Star Start QoL:** Erasing or starting a new file pre-collects BOB Star 1, opening the 1-star castle door immediately.
+* **Triple-Start Dialog/Cutscene Skip:** Rapidly pressing Start 3 times skips dialog lines and star dance animations instantly.
+* **Always-Visible Act Selector:** The act selector screen always displays all 6 stars (transparent if uncollected) and descriptions.
 * **Automated Builds:** Built-in GitHub Actions pipeline to automatically compile and package the custom `.z64` ROM.
 
 ---
@@ -50,6 +65,8 @@ SuperJarin64/
 ├── enhancements/                 # Directory for optional community patches/mods
 ├── include/                      # C header files (.h) defining types, structs, and variables
 ├── levels/                       # Level layout scripts, object placements, and collision paths for each course
+│   ├── hazy_castle/              # Hazy Castle custom Course 17 files
+│   └── totwc/                    # Bowser's Forest custom Course 16 files
 ├── lib/                          # Standard Ultra64 SDK library source code (sound, thread manager, etc.)
 ├── rsp/                          # Reality Signal Processor (RSP) coprocessor assembly microcode
 ├── sound/                        # Sound sequence banks and audio configuration files
@@ -88,6 +105,9 @@ To maintain codebase cleaniness and ensure build stability, please follow these 
 
 4. **Code Style:**
    * Run format checks before committing: `format.sh` or check files using `.clang-format` to align with the rest of the decompilation code structure.
+
+5. **Documentation Integrity (progress.md):**
+   * **Rule:** Always update `progress.md` after adding features, modifying configurations, or resolving codebase issues to keep development history fully transparent.
 
 ---
 
