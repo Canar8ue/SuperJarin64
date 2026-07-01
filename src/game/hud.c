@@ -461,10 +461,5 @@ void render_hud(void) {
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {
             render_hud_timer();
         }
-
-        // Debug: render Mario position coordinates on-screen
-        print_text_fmt_int(20, 40, "X %d", (s32)gMarioStates[0].pos[0]);
-        print_text_fmt_int(20, 24, "Y %d", (s32)gMarioStates[0].pos[1]);
-        print_text_fmt_int(120, 40, "Z %d", (s32)gMarioStates[0].pos[2]);
     }
 }
