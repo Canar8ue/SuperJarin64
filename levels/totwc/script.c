@@ -17,12 +17,77 @@
 #include "levels/totwc/header.h"
 
 static const LevelScript script_func_local_1[] = {
-    OBJECT(/*model*/ MODEL_CAP_SWITCH, /*pos*/   0, -2047, 10, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvCapSwitch),
+    // === Spawn Platform & Starting Ramp ===
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -4095, 2800, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_EXCLAMATION_BOX,    /*pos*/ -4000, 2900, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(0), /*bhv*/ bhvExclamationBox), // Wing Cap Box
+    
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -3200, 2100, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -2200, 1400, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -1200,  -600, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  -300, -1800, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+
+    // === Central Tower & Cap Switch ===
+    OBJECT(/*model*/ MODEL_CAP_SWITCH, /*pos*/ 0, -2047, 10, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvCapSwitch),
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 0, -2047, 200, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(20), /*bhv*/ bhvCheckerboardPlatform),
+    OBJECT(/*model*/ MODEL_GOOMBA, /*pos*/ -200, -1842, 200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+    OBJECT(/*model*/ MODEL_GOOMBA, /*pos*/  200, -1842, -200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+
+    // === Southeast Diagonal Bridge (Climbing from Y=-1842 to Y=1024) ===
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  800, -1400,  800, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ 1600,  -900, 1600, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ 2400,  -400, 2400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ 3200,   100, 3200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ 4000,   600, 4000, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ 3200,   200, 3200, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+
+    // === Southeast Tower Lower & Upper Deck ===
+    OBJECT(/*model*/ MODEL_CHECKERBOARD_PLATFORM, /*pos*/ 4096, 1024, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(0) | BPARAM2(100), /*bhv*/ bhvCheckerboardPlatform),
+    OBJECT(/*model*/ MODEL_EXCLAMATION_BOX,       /*pos*/ 4096, 2150, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(3), /*bhv*/ bhvExclamationBox), // Koopa Shell Box
+
+    // === Shell Surf Wave Clouds (Connecting 4096 to -4096) ===
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  2800, 1800, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  1600, 1500, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/     0, 1200, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -1600, 1500, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -2800, 1800, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_HEART,                 /*pos*/     0, 1300, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRecoveryHeart),
+
+    // === Southwest Tower Warp Pipe ===
+    OBJECT(/*model*/ MODEL_WARP_PIPE, /*pos*/ -4096, 2048, 4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0B), /*bhv*/ bhvWarpPipe),
+
+    // === Northwest Tower Warp Pipe ===
+    OBJECT(/*model*/ MODEL_WARP_PIPE, /*pos*/ -4096, 2048, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0C), /*bhv*/ bhvWarpPipe),
+
+    // === Northwest to Northeast Bridge Clouds (Climbing 2048 to 3994) ===
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -2800, 2400, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/ -1600, 2800, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/     0, 3200, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  1600, 3500, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    OBJECT(/*model*/ MODEL_LEVEL_GEOMETRY_03, /*pos*/  2800, 3700, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvStaticObject),
+    
+    OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/ -1600, 2900, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+    OBJECT(/*model*/ MODEL_GOOMBA,            /*pos*/  1600, 3600, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvGoomba),
+    OBJECT(/*model*/ MODEL_EXCLAMATION_BOX,   /*pos*/     0, 3300, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM2(7), /*bhv*/ bhvExclamationBox), // 1UP Box
+
+    // === Northeast Tower Summit Star ===
+    OBJECT(/*model*/ MODEL_STAR, /*pos*/ 4096, 4300, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(STAR_INDEX_ACT_2), /*bhv*/ bhvStar),
+
+    // === 8 Red Coins Placement ===
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/   800, -1300,   800, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/  2400,  -300,  2400, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/  4096,  1100,  4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/  2800,  1900,  4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/ -2800,  1900,  4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/ -4096,  2150, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/ -1600,  2900, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+    OBJECT(/*model*/ MODEL_RED_COIN, /*pos*/  2800,  3800, -4096, /*angle*/ 0, 0, 0, /*bhvParam*/ 0, /*bhv*/ bhvRedCoin),
+
     RETURN(),
 };
 
 static const LevelScript script_func_local_2[] = {
-    OBJECT(/*model*/ MODEL_NONE,       /*pos*/ 800, -1700,  0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(STAR_INDEX_ACT_1), /*bhv*/ bhvHiddenRedCoinStar),
+    // Red Coin Star
+    OBJECT(/*model*/ MODEL_NONE, /*pos*/ 800, -1700, 0, /*angle*/ 0, 0, 0, /*bhvParam*/ BPARAM1(STAR_INDEX_ACT_1), /*bhv*/ bhvHiddenRedCoinStar),
     RETURN(),
 };
 
@@ -43,10 +108,16 @@ const LevelScript level_totwc_entry[] = {
 
     AREA(/*index*/ 1, totwc_geo_000188),
         OBJECT(/*model*/ MODEL_NONE, /*pos*/ -4095, 2935, 0, /*angle*/ 0, 90, 0, /*bhvParam*/ BPARAM2(WARP_NODE_0A), /*bhv*/ bhvFlyingWarp),
+        
         WARP_NODE(/*id*/ WARP_NODE_0A,         /*destLevel*/ LEVEL_TOTWC,  /*destArea*/ 1, /*destNode*/ WARP_NODE_0A, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_WARP_FLOOR, /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 1, /*destNode*/ WARP_NODE_20, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_SUCCESS,    /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 1, /*destNode*/ WARP_NODE_26, /*flags*/ WARP_NO_CHECKPOINT),
         WARP_NODE(/*id*/ WARP_NODE_DEATH,      /*destLevel*/ LEVEL_CASTLE, /*destArea*/ 1, /*destNode*/ WARP_NODE_23, /*flags*/ WARP_NO_CHECKPOINT),
+        
+        // Pipe Warps
+        WARP_NODE(/*id*/ WARP_NODE_0B,         /*destLevel*/ LEVEL_TOTWC,  /*destArea*/ 1, /*destNode*/ WARP_NODE_0C, /*flags*/ WARP_NO_CHECKPOINT),
+        WARP_NODE(/*id*/ WARP_NODE_0C,         /*destLevel*/ LEVEL_TOTWC,  /*destArea*/ 1, /*destNode*/ WARP_NODE_0B, /*flags*/ WARP_NO_CHECKPOINT),
+
         JUMP_LINK(script_func_local_2),
         JUMP_LINK(script_func_local_1),
         TERRAIN(/*terrainData*/ totwc_seg7_collision),
